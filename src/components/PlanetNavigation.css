@@ -1,0 +1,80 @@
+.planet-nav {
+  position: fixed;
+  top: 50%;
+  left: 30px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 90; /* Below HUD (100) but above canvas */
+}
+
+.nav-header {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: rgba(100, 200, 255, 0.5);
+  margin-bottom: 10px;
+  padding-left: 10px;
+  border-left: 2px solid rgba(100, 200, 255, 0.3);
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav-item {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  text-align: left;
+  cursor: pointer;
+  padding: 8px 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* The glowing dot */
+.nav-dot {
+  width: 6px;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+/* Hover State */
+.nav-item:hover {
+  color: white;
+  transform: translateX(5px);
+}
+
+.nav-item:hover .nav-dot {
+  background-color: #64c8ff;
+  box-shadow: 0 0 8px #64c8ff;
+}
+
+/* Active (Selected) State */
+.nav-item.active {
+  color: #64c8ff;
+  background: linear-gradient(90deg, rgba(100, 200, 255, 0.1) 0%, transparent 100%);
+  border-left: 2px solid #64c8ff;
+}
+
+.nav-item.active .nav-dot {
+  background-color: #64c8ff;
+  transform: scale(1.5);
+  box-shadow: 0 0 10px #64c8ff;
+}
+
+@media (max-width: 768px) {
+  .planet-nav {
+    display: none; /* Hide on mobile to save space */
+  }
+}
