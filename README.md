@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🚀 Solar System Simulation - React Three.js
 
 A beautiful, interactive 3D solar system simulation built with React, Three.js, and NASA ephemeris principles.
@@ -245,3 +246,7 @@ Code: Custom implementation
 ## 🎉 Enjoy Exploring the Solar System!
 
 For questions or issues, check the browser console for error messages.
+=======
+# solar
+Simulación interactiva del sistema solar en 3D
+>>>>>>> fc928d559b36af21987d4bfda3027d13624b0340
