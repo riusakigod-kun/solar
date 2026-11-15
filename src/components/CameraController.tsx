@@ -19,7 +19,7 @@ export function CameraController() {
 
       if (selectedPlanet === 'Sun') {
         targetPos.set(0, 0, 0);
-        targetSize = 30;
+        targetSize = 42;
       } 
       else if (selectedPlanet === 'Moon') {
         const earth = planetData.find((p) => p.name === 'Earth');

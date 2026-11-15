@@ -8,6 +8,13 @@ interface SolarSystemState {
   timeSpeed: number;
   setTimeSpeed: (speed: number) => void;
   resetCamera: () => void;
+
+  // --- NUEVO: estado de bienvenida ---
+  viewerName: string | null;
+  hasEntered: boolean;
+  setViewerName: (name: string) => void;
+  enterExperience: () => void;
+  resetExperience: () => void;
 }
 
 export const useSolarSystemStore = create<SolarSystemState>((set) => ({
@@ -18,6 +25,13 @@ export const useSolarSystemStore = create<SolarSystemState>((set) => ({
   timeSpeed: 1,
   setTimeSpeed: (speed) => set({ timeSpeed: speed }),
   resetCamera: () => set({ selectedPlanet: null }),
+
+  viewerName: null,
+  hasEntered: false,
+  setViewerName: (name) => set({ viewerName: name }),
+  enterExperience: () => set({ hasEntered: true }),
+  resetExperience: () => set({ viewerName: null, hasEntered: false }),
+  
 }));
 
 // --- COMPLETE PLANET DATA (Including Sun & Moon) ---

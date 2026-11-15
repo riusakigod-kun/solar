@@ -87,6 +87,19 @@ export function Planet({ name, size, distance, speed, color, texture, hasRings }
     return null;
   }, [hasRings, name]);
 
+  const orbitGeometry = useMemo(() => {
+    const points = Array.from({ length: 256 }, (_, index) => {
+      const angle = (index / 256) * Math.PI * 2;
+      return new THREE.Vector3(
+        Math.cos(angle) * distance,
+        0,
+        Math.sin(angle) * distance,
+      );
+    });
+
+    return new THREE.BufferGeometry().setFromPoints(points);
+  }, [distance]);
+
   useFrame((state, delta) => {
     if (!groupRef.current || isPaused) return;
 
@@ -104,64 +117,65 @@ export function Planet({ name, size, distance, speed, color, texture, hasRings }
   const isSelected = selectedPlanet === name;
 
   return (
-    <group ref={groupRef}>
-      {/* Orbit Path Line */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]}>
-        <ringGeometry args={[distance - 0.2, distance + 0.2, 128]} />
-        <meshBasicMaterial color="#334466" transparent opacity={0.15} side={THREE.DoubleSide} />
-      </mesh>
-
-      {/* The Planet Mesh */}
-      <mesh
-        ref={meshRef}
-        onClick={(e) => {
-          e.stopPropagation();
-          selectPlanet(isSelected ? null : name);
-        }}
-        onPointerOver={() => (document.body.style.cursor = 'pointer')}
-        onPointerOut={() => (document.body.style.cursor = 'auto')}
-      >
-        <sphereGeometry args={[size, 64, 64]} />
-        <meshStandardMaterial
-          map={planetTexture}
-          color={planetTexture ? '#ffffff' : color}
-          emissive={isSelected ? color : '#000000'}
-          emissiveIntensity={isSelected ? 0.2 : 0}
-          roughness={0.5}
+    <group>
+      <lineLoop geometry={orbitGeometry} frustumCulled={false}>
+        <lineBasicMaterial
+          color="#79aef5"
+          transparent
+          opacity={0.48}
+          toneMapped={false}
         />
-      </mesh>
+      </lineLoop>
 
-      {/* --- ADD MOON IF EARTH --- */}
-      {name === 'Earth' && <Moon />}
-
-      {/* Saturn Rings */}
-      {hasRings && name === 'Saturn' && (
-        <mesh rotation={[-Math.PI / 2 + 0.3, 0, 0]}>
-          <ringGeometry args={[size * 1.4, size * 2.2, 128]} />
+      <group ref={groupRef}>
+        <mesh
+          ref={meshRef}
+          onClick={(e) => {
+            e.stopPropagation();
+            selectPlanet(isSelected ? null : name);
+          }}
+          onPointerOver={() => (document.body.style.cursor = 'pointer')}
+          onPointerOut={() => (document.body.style.cursor = 'auto')}
+        >
+          <sphereGeometry args={[size, 64, 64]} />
           <meshStandardMaterial
-            map={ringTexture}
-            color="#d4af37"
-            transparent
-            opacity={0.8}
-            side={THREE.DoubleSide}
+            map={planetTexture}
+            color={planetTexture ? '#ffffff' : color}
+            emissive={isSelected ? color : '#000000'}
+            emissiveIntensity={isSelected ? 0.2 : 0}
+            roughness={0.5}
           />
         </mesh>
-      )}
 
-      {/* Planet Name Label */}
-      <Html distanceFactor={size * 10} position={[0, size + (size * 0.5), 0]}>
-        <div style={{
-          color: 'white',
-          fontSize: '14px',
-          fontFamily: 'Orbitron, sans-serif',
-          pointerEvents: 'none',
-          textShadow: '0 0 4px black',
-          whiteSpace: 'nowrap',
-          opacity: 0.8
-        }}>
-          {name}
-        </div>
-      </Html>
+        {name === 'Earth' && <Moon />}
+
+        {hasRings && name === 'Saturn' && (
+          <mesh rotation={[-Math.PI / 2 + 0.3, 0, 0]}>
+            <ringGeometry args={[size * 1.4, size * 2.2, 128]} />
+            <meshStandardMaterial
+              map={ringTexture}
+              color="#d4af37"
+              transparent
+              opacity={0.8}
+              side={THREE.DoubleSide}
+            />
+          </mesh>
+        )}
+
+        <Html distanceFactor={size * 10} position={[0, size + (size * 0.5), 0]}>
+          <div style={{
+            color: 'white',
+            fontSize: '14px',
+            fontFamily: 'Orbitron, sans-serif',
+            pointerEvents: 'none',
+            textShadow: '0 0 4px black',
+            whiteSpace: 'nowrap',
+            opacity: 0.8
+          }}>
+            {name}
+          </div>
+        </Html>
+      </group>
     </group>
   );
 }
