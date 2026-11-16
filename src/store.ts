@@ -1,6 +1,6 @@
-import { SpotLightHelper } from 'three';
+
 import { create } from 'zustand';
-import { Sun } from './components/Sun';
+
 
 interface SolarSystemState {
   selectedPlanet: string | null;
