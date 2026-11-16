@@ -1,5 +1,6 @@
 import { SpotLightHelper } from 'three';
 import { create } from 'zustand';
+import { Sun } from './components/Sun';
 
 interface SolarSystemState {
   selectedPlanet: string | null;
@@ -37,16 +38,16 @@ export const useSolarSystemStore = create<SolarSystemState>((set) => ({
 
 // --- COMPLETE PLANET DATA (Including Sun & Moon) ---
 export const PLANET_INFO: Record<string, any> = {
-  SpotLightHelper: {
-    name: "Sun",
+  Sun: {
+    name: "Sol",
     diameter: "1,392,700 km",
     gravity: "274 m/s²",
     orbit: "230 Million Years (Galactic)",
     distance: "0 km",
     description: "The star at the center of our Solar System. It is a nearly perfect sphere of hot plasma, heated to incandescence by nuclear fusion reactions in its core."
   },
-  Mercurio: {
-    name: "Mercury",
+  Mercury: {
+    name: "Mercurio",
     diameter: "4,880 km",
     gravity: "3.7 m/s²",
     orbit: "88 days",
@@ -61,24 +62,24 @@ export const PLANET_INFO: Record<string, any> = {
     distance: "108.2 million km",
     description: "The second planet from the Sun. It is named after the Roman goddess of love and beauty. As the brightest natural object in Earth's night sky after the Moon, Venus can cast shadows."
   },
-  Tierra: {
-    name: "Earth",
+  Earth: {
+    name: "Tierra",
     diameter: "12,742 km",
     gravity: "9.807 m/s²",
     orbit: "365.25 days",
     distance: "149.6 million km",
     description: "The third planet from the Sun and the only astronomical object known to harbor life. About 29% of Earth's surface is land consisting of continents and islands."
   },
-  Luna: {
-    name: "Moon",
+  Moon: {
+    name: "Luna",
     diameter: "3,474 km",
     gravity: "1.62 m/s²",
     orbit: "27.3 days",
     distance: "384,400 km (from Earth)",
     description: "Earth's only natural satellite. It is the fifth-largest satellite in the Solar System and the largest among planetary satellites relative to the size of the planet that it orbits."
   },
-  Marte: {
-    name: "Mars",
+  Mars: {
+    name: "Marte",
     diameter: "6,779 km",
     gravity: "3.711 m/s²",
     orbit: "687 days",
@@ -93,24 +94,24 @@ export const PLANET_INFO: Record<string, any> = {
     distance: "778.5 million km",
     description: "The fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass one-thousandth that of the Sun, but two-and-a-half times that of all the other planets in the Solar System combined."
   },
-  Saturno: {
-    name: "Saturn",
+  Saturn: {
+    name: "Saturno",
     diameter: "116,460 km",
     gravity: "10.44 m/s²",
     orbit: "29 years",
     distance: "1.4 billion km",
     description: "The sixth planet from the Sun and the second-largest in the Solar System, after Jupiter. It is a gas giant with an average radius of about nine and a half times that of Earth."
   },
-  Urano: {
-    name: "Uranus",
+  Uranus: {
+    name: "Uranu",
     diameter: "50,724 km",
     gravity: "8.69 m/s²",
     orbit: "84 years",
     distance: "2.8 billion km",
     description: "The seventh planet from the Sun. Its name is a reference to the Greek god of the sky, Uranus, who, according to Greek mythology, was the great-grandfather of Ares (Mars), grandfather of Zeus (Jupiter) and father of Cronus (Saturn)."
   },
-  Neptuno: {
-    name: "Neptune",
+  Neptune: {
+    name: "Neptuno",
     diameter: "49,244 km",
     gravity: "11.15 m/s²",
     orbit: "165 years",

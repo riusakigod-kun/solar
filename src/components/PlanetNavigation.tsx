@@ -2,12 +2,12 @@ import { useSolarSystemStore } from '../store';
 import './PlanetNavigation.css';
 
 const PLANET_LIST = [
-  'Sun',
-  'Mercury',
+  'Sol',
+  'Mercurio',
   'Venus',
-  'Earth',
-  'Moon',
-  'Mars',
+  'Tierra',
+  'Luna',
+  'Marte',
   'Jupiter',
   'Saturn',
   'Uranus',
@@ -19,7 +19,7 @@ export function PlanetNavigation() {
 
   return (
     <div className="planet-nav">
-      <div className="nav-header">LOCATIONS</div>
+      <h2 className="nav-title">Navegación Planetaria</h2>
       <div className="nav-list">
         {PLANET_LIST.map((planet) => (
           <button
