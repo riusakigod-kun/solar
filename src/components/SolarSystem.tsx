@@ -4,11 +4,11 @@ import { Sun } from './Sun';
 import { Planet } from './Planet';
 import { Starfield } from './Starfield';
 import { CameraController } from './CameraController';
-import { useSolarSystemStore } from '../store';
+
 import { planetData } from '../data/planet';
 
 export function SolarSystem() {
-  const { resetCamera } = useSolarSystemStore();
+  
 
   return (
     <>
