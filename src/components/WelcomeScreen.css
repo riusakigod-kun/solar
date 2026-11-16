@@ -1,85 +1,139 @@
+/* src/components/WelcomeScreen.css */
+
 .welcome-screen {
   position: fixed;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at center, #0a0a20 0%, #000 100%);
+  background: transparent; /* Importante: deja ver el fondo de la rosa */
   z-index: 9999;
   padding: 20px;
+  overflow: hidden;
 }
 
 .welcome-card {
-  max-width: 480px;
+  position: relative;
+  z-index: 10;
+  max-width: 450px;
   width: 100%;
-  padding: 40px 32px;
-  border-radius: 16px;
-  background: rgba(20, 20, 40, 0.85);
-  border: 1px solid rgba(120, 140, 255, 0.3);
-  box-shadow: 0 0 40px rgba(80, 120, 255, 0.25);
+  padding: 50px 40px;
+  border-radius: 24px;
+
+  background: rgba(245, 248, 255, 0.86);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  border: 2px solid rgba(100, 133, 216, 0.55);
+  box-shadow:
+    0 0 30px rgba(82, 116, 210, 0.24),
+    inset 0 0 20px rgba(255, 255, 255, 0.65),
+    0 10px 40px rgba(67, 83, 145, 0.2);
+
   text-align: center;
-  color: #e0e6ff;
+  color: #263862;
   font-family: system-ui, -apple-system, sans-serif;
 }
 
+/* Icono de Sol (arriba del título) */
+.welcome-icon-top {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  color: #ffb86c; /* Color naranja del sol */
+  filter: drop-shadow(0 0 10px rgba(255, 184, 108, 0.6));
+}
+
 .welcome-title {
-  font-size: 2rem;
+  font-size: 2.2rem;
+  font-weight: 700;
   margin: 0 0 12px;
-  background: linear-gradient(90deg, #7aa2ff, #c084fc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #263c78;
+  text-shadow: 0 0 15px rgba(120, 160, 255, 0.28);
 }
 
 .welcome-subtitle {
   font-size: 0.95rem;
-  color: #a0a8c8;
-  margin-bottom: 28px;
-  line-height: 1.5;
+  color: #52658d;
+  margin-bottom: 32px;
+  line-height: 1.6;
+  padding: 0 10px;
+}
+
+/* Contenedor del input con icono */
+.input-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6176ad;
 }
 
 .welcome-input {
   width: 100%;
-  padding: 14px 16px;
-  border-radius: 10px;
-  border: 1px solid rgba(120, 140, 255, 0.4);
-  background: rgba(10, 10, 25, 0.8);
-  color: #fff;
+  padding: 16px 16px 16px 48px; /* Espacio extra a la izquierda para el icono */
+  border-radius: 12px;
+  border: 1px solid rgba(100, 133, 216, 0.42);
+  background: rgba(255, 255, 255, 0.76);
+  color: #263862;
   font-size: 1rem;
   outline: none;
-  margin-bottom: 16px;
   box-sizing: border-box;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: all 0.3s ease;
 }
 
 .welcome-input:focus {
-  border-color: #7aa2ff;
-  box-shadow: 0 0 0 3px rgba(122, 162, 255, 0.2);
+  border-color: #5b7fe2;
+  box-shadow: 0 0 15px rgba(79, 126, 234, 0.24);
+  background: rgba(255, 255, 255, 0.96);
 }
 
 .welcome-input::placeholder {
-  color: #5a6080;
+  color: #7d89a8;
 }
 
+/* 🎨 BOTÓN CON DEGRADADO Y BRILLO */
 .welcome-button {
   width: 100%;
-  padding: 14px;
-  border-radius: 10px;
+  padding: 16px;
+  border-radius: 12px;
   border: none;
-  background: linear-gradient(90deg, #4f6dff, #9b5cff);
+  /* Degradado de morado a azul brillante */
+  background: linear-gradient(90deg, #7866d7 0%, #4d79df 100%);
   color: #fff;
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Espacio entre el icono y el texto */
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(79, 126, 234, 0.28);
 }
 
 .welcome-button:hover:not(:disabled) {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(120, 100, 255, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(79, 126, 234, 0.45);
+  background: linear-gradient(90deg, #8978e6 0%, #638fe9 100%);
 }
 
 .welcome-button:disabled {
-  opacity: 0.4;
+  opacity: 0.5;
   cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Icono del cohete (abajo a la derecha) */
+.welcome-footer-icon {
+  margin-top: 25px;
+  display: flex;
+  justify-content: flex-end;
+  color: #6176ad;
+  opacity: 0.7;
 }

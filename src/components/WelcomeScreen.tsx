@@ -1,5 +1,9 @@
+// src/components/WelcomeScreen.tsx
 import { useState } from 'react';
 import { useSolarSystemStore } from '../store';
+import RosaAzul from './RosaAzul'; // <-- Importación correcta
+import { Rosas } from './Rosas'; // <-- 1. Importamos los pétalos
+import './Rosas.css';
 import './WelcomeScreen.css';
 
 export function WelcomeScreen() {
@@ -20,6 +24,11 @@ export function WelcomeScreen() {
 
   return (
     <div className="welcome-screen">
+      {/* 🌹 La rosa 2D va directa, SIN <Canvas> de por medio */}
+      <RosaAzul />
+      {/* 🌹 Los pétalos cayendo por delante */}
+      <Rosas /> 
+
       <div className="welcome-card">
         <h1 className="welcome-title">Bienvenida</h1>
         <p className="welcome-subtitle">
