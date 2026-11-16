@@ -1,17 +1,13 @@
-import { lazy, useEffect, useState } from 'react';
-import { Canvas } from '@react-three/offscreen';
+import { useEffect, useState } from 'react';
+import { Canvas } from '@react-three/fiber';
 import { TimeControls } from './components/TimeControls';
 import { PlanetHUD } from './components/PlanetHUD';
 import { PlanetNavigation } from './components/PlanetNavigation';
 import { WelcomeScreen } from './components/WelcomeScreen';
 import { Hyperspace } from './components/Hyperspace';
+import { SolarSystem } from './components/SolarSystem';
 import { useSolarSystemStore } from './store';
 import './App.css';
-
-const worker = new Worker(new URL('./worker.tsx', import.meta.url), { type: 'module' });
-const SolarSystemFallback = lazy(() =>
-  import('./components/SolarSystem').then((module) => ({ default: module.SolarSystem })),
-);
 
 function App() {
   const hasEntered = useSolarSystemStore((state) => state.hasEntered);
@@ -90,11 +86,11 @@ function App() {
           </header>
 
           <Canvas
-            worker={worker}
-            fallback={<SolarSystemFallback />}
             camera={{ position: [0, 50, 150], fov: 45 }}
             shadows
-          />
+          >
+            <SolarSystem />
+          </Canvas>
 
           <PlanetNavigation />
           <TimeControls />
